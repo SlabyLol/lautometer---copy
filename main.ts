@@ -63,7 +63,13 @@ basic.forever(function () {
         basic.showString("" + (readcel))
     }
     if (input.isGesture(Gesture.Shake)) {
-        basic.showString("" + (readrut))
+        basic.showLeds(`
+            . . . . .
+            . # . # .
+            . . . . .
+            # . # . .
+            . # . # #
+            `)
     }
     if (input.logoIsPressed()) {
         basic.showLeds(`
