@@ -26,8 +26,8 @@ basic.forever(function () {
         basic.showNumber(readLoud)
     }
     if (readLoud == 255) {
-        music.play(music.builtinPlayableSoundEffect(soundExpression.sad), music.PlaybackMode.UntilDone)
         basic.showIcon(IconNames.Sad)
+        music.play(music.builtinPlayableSoundEffect(soundExpression.sad), music.PlaybackMode.UntilDone)
     }
     if (readShut) {
         basic.showLeds(`
@@ -53,5 +53,15 @@ basic.forever(function () {
     }
     if (input.isGesture(Gesture.Shake)) {
         basic.showString("" + (readrut))
+    }
+    if (input.logoIsPressed()) {
+        basic.showLeds(`
+            # # . # #
+            . # . # .
+            . . . . .
+            . # # # .
+            # . . . #
+            `)
+        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
     }
 })
