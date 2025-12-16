@@ -40,6 +40,7 @@ basic.forever(function () {
         music.play(music.tonePlayable(587, music.beat(BeatFraction.Sixteenth)), music.PlaybackMode.UntilDone)
     }
     if (readcel > 33) {
+        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
         basic.showLeds(`
             . # . # .
             # . . . #
@@ -47,6 +48,16 @@ basic.forever(function () {
             . # . # .
             . . . . .
             `)
+        music.play(music.tonePlayable(131, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+        basic.showLeds(`
+            . . . . .
+            . # . # .
+            . . . . .
+            . # # # .
+            . . . . .
+            `)
+        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+        basic.clearScreen()
     }
     if (input.buttonIsPressed(Button.B)) {
         basic.showString("" + (readcel))
