@@ -5,6 +5,7 @@ let readrut = 0
 let readLoud = 0
 let readShut = false
 let readcel = 0
+radio.setGroup(1)
 basic.showLeds(`
     . . . # .
     . # . . .
@@ -59,17 +60,49 @@ basic.forever(function () {
         music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
         basic.clearScreen()
     }
-    if (input.buttonIsPressed(Button.B)) {
-        basic.showString("" + (readcel))
-    }
-    if (input.isGesture(Gesture.Shake)) {
+    if (readcel < 20) {
+        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+        basic.showLeds(`
+            . # . # .
+            # . . . #
+            # # # # #
+            . # . # .
+            . . . . .
+            `)
+        music.play(music.tonePlayable(131, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
         basic.showLeds(`
             . . . . .
             . # . # .
             . . . . .
-            # . # . .
-            . # . # #
+            . # # # .
+            . . . . .
             `)
+        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+        basic.clearScreen()
+    }
+    if (input.buttonIsPressed(Button.B)) {
+        basic.showString("" + (readcel))
+    }
+    if (input.isGesture(Gesture.Shake)) {
+        if (readShut) {
+            basic.showString(".")
+            basic.pause(500)
+            basic.showString("..")
+            basic.pause(500)
+            basic.showString("...")
+            basic.pause(500)
+            basic.showLeds(`
+                # . # # #
+                # . # . .
+                # # # # #
+                . . # . #
+                # # # . #
+                `)
+            basic.pause(2000)
+            basic.clearScreen()
+            basic.showString("LIAM = HITLER")
+            basic.clearScreen()
+        }
     }
     if (input.logoIsPressed()) {
         basic.showLeds(`
@@ -79,6 +112,14 @@ basic.forever(function () {
             . # # # .
             # . . . #
             `)
-        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    }
+    if (input.logoIsPressed() && input.isGesture(Gesture.Shake)) {
+        basic.clearScreen()
+        basic.showString("???")
+        basic.clearScreen()
+        basic.showString("uhm here")
+        basic.showNumber(3528)
+        basic.clearScreen()
+        basic.showString("Say it to me")
     }
 })
